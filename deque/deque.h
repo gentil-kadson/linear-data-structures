@@ -10,8 +10,6 @@ class Deque {
         Deque();
 
         bool isEmpty();
-        bool exists(int value);
-
         int getFront();
         int getRear();
 

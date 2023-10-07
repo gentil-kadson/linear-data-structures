@@ -4,4 +4,5 @@ using namespace std;
 
 Node::Node() {
     next = NULL;
+    prev = NULL;
 }

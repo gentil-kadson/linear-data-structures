@@ -24,12 +24,12 @@ void Deque::insertOnRear(int value) {
     newNode->value = value;
     
     if (isEmpty()) {
-        newNode->next = NULL;
         rear = front = newNode;
         return;        
     }
 
-    newNode->next = rear;
+    newNode->prev = rear;
+    newNode->next = NULL;
     rear = newNode;
     return;
 }
@@ -39,12 +39,38 @@ void Deque::insertOnFront(int value) {
     newNode->value = value;
 
     if (isEmpty()) {
-        newNode->next = NULL;
         front = rear = newNode;
         return;
     }
 
     newNode->next = front;
+    newNode->prev = NULL;
     front = newNode;
+    return;
+}
+
+void Deque::removeFromRear() {
+    if (isEmpty()) {
+        cout << "The Deque is empty." << endl;
+        return;
+    }
+
+    Node *auxRear = rear;
+    rear->next = NULL;
+    rear = rear->prev;
+    delete auxRear;
+    return;
+}
+
+void Deque::removeFromFront() {
+    if (isEmpty()) {
+        cout << "The Deque is empty." << endl;
+        return;
+    }
+    
+    Node *auxFront = front;
+    front->prev = NULL;
+    front = front->next;
+    delete auxFront;
     return;
 }
