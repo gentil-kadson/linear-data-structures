@@ -11,12 +11,24 @@ bool Deque::isEmpty() {
     return rear == NULL && front == NULL ? true : false;
 }
 
-int Deque::getFront() {
-    return front->value;
+void Deque::getFront() {
+    if (front == NULL) {
+        cout << "There are no elements in the front." << endl;
+        return;
+    }
+
+    cout << front->value << endl;
+    return;
 }
 
-int Deque::getRear() {
-    return rear->value;
+void Deque::getRear() {
+    if (rear == NULL) {
+        cout << "There are no elements on the rear." << endl;
+        return;
+    }
+
+    cout << rear->value << endl;
+    return;
 }
 
 void Deque::insertOnRear(int value) {
@@ -28,8 +40,8 @@ void Deque::insertOnRear(int value) {
         return;        
     }
 
+    rear->next = newNode;
     newNode->prev = rear;
-    newNode->next = NULL;
     rear = newNode;
     return;
 }
@@ -43,8 +55,8 @@ void Deque::insertOnFront(int value) {
         return;
     }
 
-    newNode->next = front;
-    newNode->prev = NULL;
+    front->next = newNode;
+    newNode->prev = front;
     front = newNode;
     return;
 }
@@ -55,9 +67,16 @@ void Deque::removeFromRear() {
         return;
     }
 
+    if (rear == front) {
+        front = NULL;
+        rear = NULL;
+        return;
+    }
+
     Node *auxRear = rear;
-    rear->next = NULL;
     rear = rear->prev;
+    rear->next = NULL;
+    
     delete auxRear;
     return;
 }
@@ -68,9 +87,16 @@ void Deque::removeFromFront() {
         return;
     }
     
+    if (front == rear) {
+        front = NULL;
+        rear = NULL;
+        return;
+    }
+
     Node *auxFront = front;
-    front->prev = NULL;
     front = front->next;
+    front->prev = NULL;
+
     delete auxFront;
     return;
 }

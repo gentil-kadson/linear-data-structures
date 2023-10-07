@@ -10,8 +10,8 @@ class Deque {
         Deque();
 
         bool isEmpty();
-        int getFront();
-        int getRear();
+        void getFront();
+        void getRear();
 
         void insertOnRear(int value);
         void insertOnFront(int value);
